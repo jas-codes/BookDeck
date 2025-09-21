@@ -1,6 +1,6 @@
 @BookDeck.WebAPI_HostAddress = http://localhost:5007
 
-GET {{BookDeck.WebAPI_HostAddress}}/weatherforecast
+GET http://localhost:5007/weatherforecast
 Accept: application/json
 
 ###
