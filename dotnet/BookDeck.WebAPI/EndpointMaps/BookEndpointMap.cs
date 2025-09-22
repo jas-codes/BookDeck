@@ -9,31 +9,14 @@ namespace BookDeck.WebAPI.EndpointMaps;
 
 public class BookEndpointMap : EndpointMapBase
 {
-    private readonly string[] _summaries =
-    [
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    ];
     public override void Map(WebApplication app)
     {
-        app.MapGet("/weatherforecast", GetWeatherForecast).WithName("GetWeatherForecast");
+        app.MapGet("/Books", GetBooks).WithName("Get All Books");
     }
     
     [HttpGet]
-    private IResult GetWeatherForecast()
+    private IResult GetBooks()
     {
-        var forecast =  Enumerable.Range(1, 5).Select(index =>
-                new WeatherForecast
-                (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Random.Shared.Next(-20, 55),
-                    _summaries[Random.Shared.Next(_summaries.Length)]
-                ))
-            .ToArray();
-        return Results.Ok(forecast);
-    }
-    
-    record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-    {
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-    }
+        return Results.Ok();
+    } 
 }
